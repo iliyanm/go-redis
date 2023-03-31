@@ -1,7 +1,7 @@
 # Redis client for Go
 
 [![build workflow](https://github.com/redis/go-redis/actions/workflows/build.yml/badge.svg)](https://github.com/redis/go-redis/actions)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/redis/go-redis/v9)](https://pkg.go.dev/github.com/redis/go-redis/v9?tab=doc)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/iliyanm/go-redis/v9)](https://pkg.go.dev/github.com/iliyanm/go-redis/v9?tab=doc)
 [![Documentation](https://img.shields.io/badge/redis-documentation-informational)](https://redis.uptrace.dev/)
 [![Chat](https://discordapp.com/api/guilds/752070105847955518/widget.png)](https://discord.gg/rWtp5Aj)
 
@@ -22,8 +22,8 @@
 
 - [Discussions](https://github.com/redis/go-redis/discussions)
 - [Chat](https://discord.gg/rWtp5Aj)
-- [Reference](https://pkg.go.dev/github.com/redis/go-redis/v9)
-- [Examples](https://pkg.go.dev/github.com/redis/go-redis/v9#pkg-examples)
+- [Reference](https://pkg.go.dev/github.com/iliyanm/go-redis/v9)
+- [Examples](https://pkg.go.dev/github.com/iliyanm/go-redis/v9#pkg-examples)
 
 ## Ecosystem
 
@@ -60,7 +60,7 @@ go mod init github.com/my/repo
 Then install go-redis/**v9**:
 
 ```shell
-go get github.com/redis/go-redis/v9
+go get github.com/iliyanm/go-redis/v9
 ```
 
 ## Quickstart
@@ -68,7 +68,7 @@ go get github.com/redis/go-redis/v9
 ```go
 import (
     "context"
-    "github.com/redis/go-redis/v9"
+    "github.com/iliyanm/go-redis/v9"
     "fmt"
 )
 

@@ -9,7 +9,7 @@ import (
 	"math/big"
 	"strconv"
 
-	"github.com/redis/go-redis/v9/internal/util"
+	"github.com/iliyanm/go-redis/v9/internal/util"
 )
 
 // redis resp protocol data type.
@@ -163,7 +163,11 @@ func (r *Reader) ReadReply() (interface{}, error) {
 	case RespInt:
 		return util.ParseInt(line[1:], 10, 64)
 	case RespFloat:
-		return r.readFloat(line)
+		f, err := r.readFloat(line)
+		if f == nil {
+			return string(line[1:]), err
+		}
+		return *f, err
 	case RespBool:
 		return r.readBool(line)
 	case RespBigInt:
@@ -182,15 +186,23 @@ func (r *Reader) ReadReply() (interface{}, error) {
 	return nil, fmt.Errorf("redis: can't parse %.100q", line)
 }
 
-func (r *Reader) readFloat(line []byte) (float64, error) {
+func (r *Reader) readFloat(line []byte) (*float64, error) {
+	toPtr := func(f float64) *float64 {
+		return &f
+	}
+
 	v := string(line[1:])
 	switch string(line[1:]) {
 	case "inf":
-		return math.Inf(1), nil
+		return toPtr(math.Inf(1)), nil
 	case "-inf":
-		return math.Inf(-1), nil
+		return toPtr(math.Inf(-1)), nil
+	case "nan", "-nan":
+		return nil, nil
 	}
-	return strconv.ParseFloat(v, 64)
+
+	f, err := strconv.ParseFloat(v, 64)
+	return &f, err
 }
 
 func (r *Reader) readBool(line []byte) (bool, error) {
@@ -353,7 +365,11 @@ func (r *Reader) ReadFloat() (float64, error) {
 	}
 	switch line[0] {
 	case RespFloat:
-		return r.readFloat(line)
+		f, err := r.readFloat(line)
+		if f == nil {
+			return 0, err
+		}
+		return *f, err
 	case RespStatus:
 		return strconv.ParseFloat(string(line[1:]), 64)
 	case RespString:

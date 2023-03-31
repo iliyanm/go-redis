@@ -2,7 +2,7 @@ module github.com/redis/go-redis/example/otel
 
 go 1.18
 
-replace github.com/redis/go-redis/v9 => ../..
+replace github.com/iliyanm/go-redis/v9 => ../..
 
 replace github.com/redis/go-redis/extra/redisotel/v9 => ../../extra/redisotel
 
@@ -10,7 +10,7 @@ replace github.com/redis/go-redis/extra/rediscmd/v9 => ../../extra/rediscmd
 
 require (
 	github.com/redis/go-redis/extra/redisotel/v9 v9.0.2
-	github.com/redis/go-redis/v9 v9.0.2
+	github.com/iliyanm/go-redis/v9 v9.0.2
 	github.com/uptrace/uptrace-go v1.12.0
 	go.opentelemetry.io/otel v1.12.0
 )

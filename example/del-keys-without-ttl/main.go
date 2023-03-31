@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/redis/go-redis/v9"
+	"github.com/iliyanm/go-redis/v9"
 	"go.uber.org/zap"
 )
 
